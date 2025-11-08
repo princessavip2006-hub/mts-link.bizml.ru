@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTS | Вход в систему</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(106, 17, 203, 0.3);
+            width: 100%;
+            max-width: 480px;
+            padding: 50px 40px;
+            text-align: center;
+            border: 2px solid #2d007a;
+        }
+        
+        .logo {
+            color: #6a11cb;
+            font-size: 46px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .title {
+            color: #2d007a;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #2d007a;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 18px 22px;
+            border: 3px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            color: #2d007a;
+            font-weight: 500;
+        }
+        
+        .form-input:focus {
+            border-color: #6a11cb;
+            background: white;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(106, 17, 203, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .form-input::placeholder {
+            color: #999;
+            font-style: italic;
+            font-weight: normal;
+        }
+        
+        .login-button {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 20px;
+            width: 100%;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(106, 17, 203, 0.4);
+            border: 2px solid #2d007a;
+        }
+        
+        .login-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(106, 17, 203, 0.6);
+        }
+        
+        .secondary-button {
+            background: linear-gradient(135deg, #2d007a 0%, #6a11cb 100%);
+            color: white;
+            border: none;
+            padding: 20px;
+            width: 100%;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(45, 0, 122, 0.4);
+            border: 2px solid #6a11cb;
+        }
+        
+        .secondary-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(45, 0, 122, 0.6);
+        }
+        
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .link {
+            color: #2d007a;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: #f8f9fa;
+        }
+        
+        .link:hover {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-color: #6a11cb;
+            transform: translateY(-2px);
+        }
+        
+        .conference-info {
+            background: linear-gradient(135deg, #2d007a 0%, #6a11cb 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 35px;
+            text-align: center;
+            border: 2px solid #6a11cb;
+            box-shadow: 0 8px 25px rgba(45, 0, 122, 0.3);
+        }
+        
+        .conference-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .conference-details {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+        
+        .footer {
+            margin-top: 35px;
+            color: #2d007a;
+            font-size: 14px;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #6a11cb, transparent);
+            margin: 25px 0;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">MTS</div>
+        <div class="title">Вход</div>
+        
+        <!-- Блок с информацией о конференции -->
+        <div class="conference-info">
+            <div class="conference-title">Информационная безопасность</div>
+            <div class="conference-details">
+                Сегодня, 09:00 - 10:30 (МСК)<br>
+                Организатор: Ангелина Таирова
+            </div>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Почта</label>
+                <input type="text" id="email" name="email" class="form-input" placeholder="Введите вашу почту" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" class="form-input" placeholder="Введите ваш пароль" required>
+            </div>
+
+            <button type="submit" class="login-button">ВОЙТИ</button>
+            <button type="button" class="secondary-button">ВОЙТИ ЧЕРЕЗ SSO</button>
+        </form>
+
+        <div class="divider"></div>
+
+        <div class="links">
+            <a href="#" class="link">ВОССТАНОВИТЬ ПАРОЛЬ</a>
+            <a href="#" class="link">СОЗДАТЬ АККАУНТ</a>
+        </div>
+        
+        <div class="footer">
+            MTS Link Conference System © 2025
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Имитация проверки данных
+            alert(`(Учебный макет)\nВ реальной атаке данные были бы отправлены злоумышленнику.\nПочта: ${email}\nПароль: ${password}`);
+
+            // Имитация ошибки и перенаправления
+            setTimeout(() => {
+                alert("Ошибка авторизации. Проверьте данные и попробуйте снова.");
+                // Раскомментировать для реального перенаправления:
+                // window.location.href = "https://my.mts-link.ru/j/Ranepa/7265687085/2efd18f2fc4afd9988346221da2e225f";
+            }, 1000);
+        });
+
+        // Обработка кнопки "ВОЙТИ ЧЕРЕЗ SSO"
+        document.querySelector('.secondary-button').addEventListener('click', function() {
+            alert("(Учебный макет)\nПеренаправление на систему единого входа (SSO)...");
+            setTimeout(() => {
+                alert("Система SSO временно недоступна. Используйте стандартный вход.");
+            }, 1500);
+        });
+
+        // Обработка ссылок
+        document.querySelectorAll('.link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const linkText = this.textContent;
+                alert(`(Учебный макет)\nФункция "${linkText}" временно недоступна.`);
+            });
+        });
+
+        // Добавляем интерактивность для полей ввода
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.background = 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.style.background = '#f8f9fa';
+            });
+        });
+    </script>
+</body>
+</html>
